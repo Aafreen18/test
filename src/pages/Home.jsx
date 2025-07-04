@@ -1,4 +1,5 @@
 import Carousel from '../components/Carousel';
+import HelpButtonModal from '../components/HelpButtonModal';
 
 function Home() {
   const heroSlides = [
@@ -19,9 +20,13 @@ function Home() {
   },
 ];
   return (
-    <div className="bg-gray-50 flex items-center justify-center p-4">
-      <Carousel slides={heroSlides} />
-    </div>
+    <>  
+      <HelpButtonModal />
+
+      <div className="bg-gray-50 flex items-center justify-center p-4">
+        <Carousel slides={heroSlides} />
+      </div>
+    </>
   );
 }
 
