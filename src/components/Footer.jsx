@@ -3,6 +3,7 @@ import { LiaDogSolid } from "react-icons/lia";
 import Locations from "./Locations";
 import {FaPhoneAlt} from "react-icons/fa";
 import ScrollToTop from "./ScrollToTop";
+import { FaFacebook, FaInstagram, FaTwitter, FaYoutube, FaWhatsapp } from 'react-icons/fa';
 
 function Footer() {
   return (
@@ -46,7 +47,7 @@ function Footer() {
                 {/* Other Links */}
                 <div>
                     <h3 className="text-lg font-semibold mb-2">Other Links</h3>
-                    <ul className="space-y-1 text-sm text-grey-400">
+                    <ul className="space-y-1 text-sm text-gray-400">
                         <li><Link to="/careers" className="hover:text-white transition-colors duration-300">Careers</Link></li>
                         <li><Link to="/press" className="hover:text-white transition-colors duration-300">Press and Media</Link></li>
                         <li><Link to="/gallery" className="hover:text-white transition-colors duration-300">Gallery</Link></li>
@@ -153,7 +154,35 @@ function Footer() {
             <ScrollToTop />
         </div>
         
-        
+        <div className="bg-gray-100 py-6 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+                <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 mb-4 md:mb-0">
+                    <p className="text-gray-600">
+                        © 2025 All Rights Reserved DCC Animal Hospital
+                    </p>
+                    
+                    <div className="flex space-x-4">
+                        <a href="#" className="text-gray-600 transition-transform hover:scale-110">
+                        <FaFacebook size={20} />
+                        </a>
+                        <a href="#" className="text-gray-600 transition-transform hover:scale-110">
+                        <FaInstagram size={20} />
+                        </a>
+                        <a href="#" className="text-gray-600 transition-transform hover:scale-110">
+                        <FaTwitter size={20} />
+                        </a>
+                        <a href="#" className="text-gray-600 transition-transform hover:scale-110">
+                        <FaYoutube size={20} />
+                        </a>
+                    </div>
+                </div>
+
+                <button className="bg-green-500 text-white py-2 px-4 rounded-full flex items-center space-x-2 ml-auto hover:bg-white hover:text-green-500 hover:border hover:border-green-500 transition-all duration-300 whitespace-nowrap">
+                    <FaWhatsapp size={20} />
+                    <span>How can I help you</span>
+                </button>
+            </div>
+        </div>
     </footer>
   );
 }
