@@ -1,6 +1,7 @@
 import Carousel from '../components/Carousel';
 import HelpButtonModal from '../components/HelpButtonModal';
 import BookAppointment from '../components/BookAppointment';
+import MembershipCard from '../components/MembershipCard';
 
 function Home() {
   const heroSlides = [
@@ -29,6 +30,20 @@ function Home() {
       </div>
 
       <BookAppointment />
+
+      <div className="flex max-w-7xl mx-auto">
+        <div className="">
+          <MembershipCard time="3 Monthly" price="₹1599" />
+        </div>
+
+        <div className="">
+          <MembershipCard time="6 Monthly" price="₹2599" />
+        </div>
+
+        <div className="">
+          <MembershipCard time="Annual" price="₹4299" />
+        </div>
+      </div>
     </>
   );
 }
