@@ -31,18 +31,23 @@ function Home() {
 
       <BookAppointment />
 
-      <div className="flex max-w-7xl mx-auto">
-        <div className="">
-          <MembershipCard time="3 Monthly" price="₹1599" />
-        </div>
+      <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#444444]" style={{paddingTop: "200px", paddingBottom:" 100px"}}>
+        <h1 className='text-white font-extrabold text-4xl text-center'>Limitless Consultations, Limitless Health</h1>
+        <h1 className='text-[#b1b1b1] font-md text-2xl text-center mb-20'>Love for pets is a simple concept, so are our membership plans.</h1>
 
-        <div className="">
-          <MembershipCard time="6 Monthly" price="₹2599" />
-        </div>
+        <div className="flex max-w-7xl items-center justify-center mx-auto">
+          <div className="">
+            <MembershipCard time="3 Monthly" price="₹1599" />
+          </div>
 
-        <div className="">
-          <MembershipCard time="Annual" price="₹4299" />
-        </div>
+          <div className="">
+            <MembershipCard time="6 Monthly" price="₹2599" />
+          </div>
+
+          <div className="">
+            <MembershipCard time="Annual" price="₹4299" />
+          </div>
+          </div>
       </div>
     </>
   );
