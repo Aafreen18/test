@@ -1,5 +1,6 @@
 import Carousel from '../components/Carousel';
 import HelpButtonModal from '../components/HelpButtonModal';
+import BookAppointment from '../components/BookAppointment';
 
 function Home() {
   const heroSlides = [
@@ -26,6 +27,8 @@ function Home() {
       <div className="bg-gray-50 flex items-center justify-center p-4">
         <Carousel slides={heroSlides} />
       </div>
+
+      <BookAppointment />
     </>
   );
 }
