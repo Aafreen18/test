@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { FaAngleDown} from "react-icons/fa";
 
 const BookAppointment = () => {
   const [showCityDropdown, setShowCityDropdown] = useState(false);
-  const [selectedCity, setSelectedCity] = useState("Select City");
-  const [selectedFacility, setSelectedFacility] = useState("Facility");
 
   const cityFacilitiesMap = {
     "Gurugram": ["DCC Animal Hospital, Gurugram", "DCC Petcare Gurugram"],
@@ -16,10 +14,10 @@ const BookAppointment = () => {
 
   const cities = Object.keys(cityFacilitiesMap);
   const [availableFacilities, setAvailableFacilities] = useState([]);
+  const [showIconCity, setShowIconCity] = useState(true);
+  const [showIconFacility, setShowIconFacility] = useState(true);
 
   const handleCitySelect = (city) => {
-    setSelectedCity(city);
-    setSelectedFacility("Select Facility");
     const facilities = cityFacilitiesMap[city] || [];
     setAvailableFacilities(facilities);
   };
@@ -29,13 +27,12 @@ const BookAppointment = () => {
   };
 
   const getFacilityButtonText = () => {
-    if (selectedCity === "Select City") return "Select city first";
     if (availableFacilities[0] === "Not Applicable") return "Not applicable";
-    return selectedFacility;
+    return "Facility";
   };
 
   return (
-    <div className="max-w-5xl mx-auto mt-10 rounded-3xl shadow-lg p-6 bg-green-500 transition-all duration-300">
+    <div className="max-w-6xl mx-auto mt-10 rounded-3xl shadow-lg p-6 bg-green-500 transition-all duration-300">
       <h2 className="text-2xl font-bold mb-6 text-center text-white">Book an Appointment</h2>
 
       <div className="flex flex-col lg:flex-row lg:items-start lg:space-x-4 space-y-4 lg:space-y-0">
@@ -43,23 +40,31 @@ const BookAppointment = () => {
         <div className="w-full lg:w-1/3">
           <div
             onClick={toggleCityDropdown}
-            className="flex justify-between items-center text-white cursor-pointer shadow-md rounded-3xl px-4 py-2 bg-green-700 hover:bg-white hover:text-black"
+            onMouseDown={() => {setShowIconCity(false) }}
+            onMouseUp={() => { setShowIconCity(true) }}
+            onMouseLeave={() => { setShowIconCity(true) }}
+            className="relative flex justify-center items-center text-white cursor-pointer shadow-md rounded-3xl px-4 py-2 bg-green-700 hover:bg-white hover:text-black"
           >
-            <span>Select City</span>
-            {showCityDropdown ? <FaAngleUp /> : <FaAngleDown />}
+            <span className="pointer-events-none">Select City</span>
+
+            {showIconCity && (
+              <div className="absolute right-4">
+                <FaAngleDown />
+              </div>
+            )}
           </div>
           {showCityDropdown && (
-            <ul className="rounded-lg mt-2 bg-white shadow-inner">
+          <div className="flex flex-col space-y-2 mt-2">
               {cities.map((city, index) => (
-                <li
+                <button
                   key={index}
                   onClick={() => handleCitySelect(city)}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="w-full bg-white text-black px-6 py-2 rounded-3xl  hover:text-white hover:bg-purple-950 transition-all duration-300 whitespace-nowrap"
                 >
                   {city}
-                </li>
+                </button>
               ))}
-            </ul>
+          </div>
           )}
         </div>
 
@@ -69,28 +74,33 @@ const BookAppointment = () => {
         {/* Facility Dropdown */}
         <div className="w-full lg:w-1/3">
           <div
-            className={`flex justify-between items-center text-white cursor-pointer shadow-md rounded-3xl px-4 py-2 ${
-              selectedCity === "Select City" ? "bg-green-700 opacity-50" : "bg-green-700 hover:bg-white hover:text-black"
-            }`}
+            onMouseDown={() => {setShowIconFacility(false) }}
+            onMouseUp={() => { setShowIconFacility(true) }}
+            onMouseLeave={() => { setShowIconFacility(true) }}
+            className="relative flex justify-center items-center text-white cursor-pointer shadow-md rounded-3xl px-4 py-2 bg-green-700 hover:bg-white hover:text-black"
           >
-            <span>{getFacilityButtonText()}</span>
-            {selectedCity !== "Select City" && availableFacilities[0] !== "Not Applicable" && 
-              <FaAngleUp /> }
+            <span className="pointer-events-none">{getFacilityButtonText()}</span>
+
+            {showIconFacility && (
+              <div className="absolute right-4">
+                <FaAngleDown />
+              </div>
+            )}
           </div>
           {availableFacilities[0] !== "Not Applicable" && (
-            <ul className="rounded-lg mt-2 bg-white shadow-inner">
+            <div className="flex flex-col space-y-2 mt-2">
               {availableFacilities.map((facility, index) => (
-                <li
+                <button
                   key={index}
                   onClick={() => {
                     setSelectedFacility(facility);
                   }}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="w-full bg-white text-black px-6 py-2 rounded-3xl  hover:text-white hover:bg-purple-950 transition-all duration-300 whitespace-nowrap"
                 >
                   {facility}
-                </li>
+                </button>
               ))}
-            </ul>
+            </div>
           )}
         </div>
 
