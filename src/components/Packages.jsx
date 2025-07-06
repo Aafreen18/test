@@ -24,37 +24,41 @@ const Packages = () => {
                 <p className="text-sm text-gray-100">* Prices Inclusive of GST</p>
             </div>
             
-            <div className="mb-6">
-                <h3 className="text-lg font-semibold text-white mb-4">What you'll get</h3>
-                <ul className="space-y-2 text-white">
-                    <li className="flex items-center">
-                        <svg className="w-4 h-4 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Grooming sessions
-                    </li>
-                    <li className="flex items-center">
-                        <svg className="w-4 h-4 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Body clippings
-                    </li>
-                    <li className="flex items-center">
-                        <svg className="w-4 h-4 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Hydrotherapy sessions
-                    </li>
-                </ul>
+            <div className="mb-6 relative">
 
-                <div className="pt-16">
-                    <button className="bg-black text-center font-bold hover:bg-white hover:text-black hover:border-black text-white py-2 px-4 rounded-3xl transition duration-200">
-                        Choose
-                    </button>
+                <div className="relative z-10 bg-cover items-end bg-transparent bg-center bg-no-repeat" style={{ backgroundImage: "url('/cat3R.jpg')" }}>
+
+                    <h3 className="text-lg font-semibold text-white mb-4">What you'll get</h3>
+                    <ul className="space-y-2 text-white">
+                        <li className="flex items-center">
+                            <svg className="w-4 h-4 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            Grooming sessions
+                        </li>
+                        <li className="flex items-center">
+                            <svg className="w-4 h-4 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            Body clippings
+                        </li>
+                        <li className="flex items-center">
+                            <svg className="w-4 h-4 mr-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            Hydrotherapy sessions
+                        </li>
+                    </ul>
+
+                    <div className="pt-16">
+                        <button className="bg-black text-center font-bold hover:bg-white hover:text-black hover:border-black text-white py-2 px-4 rounded-3xl transition duration-200">
+                            Choose
+                        </button>
+                    </div>
+
                 </div>
             </div>
-            
-
+        
         </div>
     </div>
   );
