@@ -61,7 +61,7 @@ function Navbar() {
           </Link>
 
           {/* About dropdown (mobile) */}
-          <div className="relative flex flex-col">
+          <div className="relative flex flex-col z-50">
             <button
               onClick={() => setIsAboutOpenMobile(!isAboutOpenMobile)}
               className="flex justify-between items-center text-gray-700 font-medium hover:text-green-600"
@@ -104,7 +104,7 @@ function Navbar() {
           </div>
 
           {/* Services dropdown mobile */}
-          <div className="relative flex flex-col">
+          <div className="relative flex flex-col z-50">
             <button
               onClick={() => setIsServicesOpenMobile(!isServicesOpenMobile)}
               className="flex justify-between items-center text-gray-700 font-medium hover:text-green-600"
@@ -179,8 +179,8 @@ function Navbar() {
           </button>
           
           {/* Dropdown menu of about*/}
-          <div className="absolute pt-2 top-full left-0 invisible group-hover:visible">
-            <ul className="bg-green-600 w-48 text-white shadow-md rounded-lg z-50">
+          <div className="absolute pt-2 top-full left-0 invisible group-hover:visible z-100">
+            <ul className="bg-green-600 w-48 text-white shadow-md rounded-lg z-100">
               <li>
                 <Link 
                   to="/about/team" 
@@ -227,8 +227,8 @@ function Navbar() {
           </button>
           
           {/* Dropdown menu of services*/}
-          <div className="absolute pt-2 top-full left-0 invisible group-hover:visible">
-            <ul className="bg-green-600 w-56 text-white shadow-md rounded-lg z-50">
+          <div className="absolute pt-2 top-full left-0 invisible group-hover:visible z-100">
+            <ul className="bg-green-600 w-56 text-white shadow-md rounded-lg z-100">
               <li>
                 <Link 
                   to="/services/offering" 
