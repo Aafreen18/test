@@ -155,12 +155,15 @@ function Footer() {
         </div>
         
         <div className="bg-gray-100 py-6 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-                <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8 mb-4 md:mb-0">
-                    <p className="text-gray-600">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0 lg:space-x-8 mb-4 lg:mb-0 w-full">
+                {/* Responsive layout container for all items */}
+                <div className="flex flex-row justify-between items-start w-full">
+                    
+                    {/* Left side: Paragraph + Icons stacked */}
+                    <div className="flex flex-col space-y-2 max-w-xs">
+                    <p className="text-gray-600 text-sm sm:text-base">
                         © 2025 All Rights Reserved DCC Animal Hospital
                     </p>
-                    
                     <div className="flex space-x-4">
                         <a href="#" className="text-gray-600 transition-transform hover:scale-110">
                         <FaFacebook size={20} />
@@ -175,12 +178,17 @@ function Footer() {
                         <FaYoutube size={20} />
                         </a>
                     </div>
-                </div>
+                    </div>
 
-                <button className="bg-green-500 text-white py-2 px-4 rounded-full flex items-center space-x-2 ml-auto hover:bg-white hover:text-green-500 hover:border hover:border-green-500 transition-all duration-300 whitespace-nowrap">
-                    <FaWhatsapp size={20} />
-                    <span>How can I help you</span>
-                </button>
+                    {/* Right side: Button */}
+                    <div className="mt-4 sm:mt-0">
+                    <button className="bg-green-500 text-white py-2 px-4 rounded-full flex items-center space-x-2 hover:bg-white hover:text-green-500 hover:border hover:border-green-500 transition-all duration-300 whitespace-nowrap">
+                        <FaWhatsapp size={20} />
+                        <span>How can I help you</span>
+                    </button>
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </footer>

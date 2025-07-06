@@ -2,6 +2,7 @@ import Carousel from '../components/Carousel';
 import HelpButtonModal from '../components/HelpButtonModal';
 import BookAppointment from '../components/BookAppointment';
 import MembershipSection from '../components/MembershipSection';
+import Packages from '../components/Packages';
 
 function Home() {
   const heroSlides = [
@@ -27,13 +28,24 @@ function Home() {
     <>  
       <HelpButtonModal />
 
-      <div className="bg-gray-50 flex items-center justify-center p-4">
-        <Carousel slides={heroSlides} />
+      <div className="relative">
+    
+        <div className="bg-gray-50 flex items-center justify-center p-4">
+          <Carousel slides={heroSlides} />
+        </div>
+
+       
+        <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-full">
+          <BookAppointment />
+        </div>
+
+       
+        <div className="relative"> 
+          <MembershipSection />
+        </div>
       </div>
 
-      <BookAppointment />
-
-      <MembershipSection />
+      <Packages />
     </>
   );
 }
