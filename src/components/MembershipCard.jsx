@@ -1,8 +1,8 @@
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
-const MembershipCard = ({ time, price }) => {
+const MembershipCard = ({ time, price, hoverColor }) => {
   return (
-    <div className="max-w-xs mx-auto bg-black rounded-3xl shadow-md overflow-hidden border border-gray-200 my-4">
+    <div className={`max-w-xs mx-auto bg-black rounded-3xl shadow-xl overflow-hidden border my-4 px-4 ${hoverColor}`}>
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-white">
           {time}<br /> Membership
@@ -12,7 +12,7 @@ const MembershipCard = ({ time, price }) => {
         <p className="text-gray-200 text-sm mb-4">
           Purchase possible on DCC PetConnect App
         </p>
-        <p className="text-gray-400 text-sm mb-4">
+        <p className="text-gray-300 text-sm mb-4">
           (GST Included + T&C Apply)
         </p>
         
