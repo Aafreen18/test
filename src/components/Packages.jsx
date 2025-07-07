@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Packages = ({
   title,
@@ -7,13 +6,14 @@ const Packages = ({
   features,
   imageUrl,
   height,
+  dimmed = false,
   buttonPaddingBottom = '0px', 
 }) => {
   return (
     <div
       className="w-90 flex flex-col rounded-t-3xl h-[500px] overflow-hidden shadow-lg p-8 font-sans bg-no-repeat bg-[right_2rem_bottom] bg-[length:200px] hover:z-100 transition-all duration-300"
       style={{
-        backgroundColor,
+        backgroundColor: dimmed ? 'grey' : backgroundColor,
         height: `${height}px`,
         backgroundImage: `url('${imageUrl}')`,
       }}

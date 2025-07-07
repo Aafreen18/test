@@ -1,8 +1,9 @@
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
-const MembershipCard = ({ time, price, hoverColor }) => {
+const MembershipCard = ({ time, price, hoverColor, dimmed }) => {
   return (
-    <div className={`max-w-xs mx-auto bg-black rounded-3xl shadow-xl overflow-hidden border my-4 px-4 ${hoverColor}`}>
+    <div className={`max-w-xs mx-auto bg-black rounded-3xl shadow-xl overflow-hidden my-4 px-4  ${hoverColor}`}
+     style={dimmed ? { backgroundColor: "#0B1D51" } : {}}>
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2 text-white">
           {time}<br /> Membership

@@ -27,9 +27,9 @@ const MembershipSection = () => {
         staggerChildren: 0.2, 
         },
     },
-    };
+  };
 
-    const cardVariants = {
+  const cardVariants = {
     hidden: { opacity: 0, y: 80 },
     visible: {
         opacity: 1,
@@ -39,7 +39,10 @@ const MembershipSection = () => {
         ease: [0.22, 1, 0.36, 1], 
         },
     },
-    };
+  };
+
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
 
   return (
     <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#444444]" style={{ paddingTop: "200px", paddingBottom: "100px" }}>
@@ -114,28 +117,40 @@ const MembershipSection = () => {
 
             {/* Overlapping cards for medium and up screens */}
             <div className="hidden md:flex items-center justify-center mt-10 overflow-hidden">
-                <motion.div
-                    className="flex"
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.4 }}
-                >
-                    {memberships.map((m, i) => (
-                    <motion.div
-                        key={i}
-                        variants={cardVariants}
-                        className={`z-${10 + i} ${i !== 0 ? "-ml-6" : ""}`}
-                        whileHover={{ 
-                            zIndex: 20, 
-                            transition: { duration: 0.3 } 
-                        }}
-                    >
-                        <MembershipCard time={m.time} price={m.price} hoverColor={m.hoverColor} />
-                    </motion.div>
-                    ))}
-                </motion.div>
-            </div>
+            <motion.div
+              className="flex"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.4 }}
+            >
+              {memberships.map((m, i) => {
+                const isDimmed = hoveredIndex !== null && hoveredIndex !== i;
+
+                return (
+                  <motion.div
+                    key={i}
+                    variants={cardVariants}
+                    className={`z-${10 + i} ${i !== 0 ? "-ml-6" : ""}`}
+                    whileHover={{
+                      zIndex: 20,
+                      transition: { duration: 0.3 },
+                    }}
+                    onMouseEnter={() => setHoveredIndex(i)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <MembershipCard
+                      time={m.time}
+                      price={m.price}
+                      hoverColor={m.hoverColor}
+                      dimmed={isDimmed}
+                    />
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+
         </div>
     </div>
   );
