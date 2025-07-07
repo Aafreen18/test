@@ -3,6 +3,7 @@ import Carousel from '../components/Carousel';
 import HelpButtonModal from '../components/HelpButtonModal';
 import BookAppointment from '../components/BookAppointment';
 import MembershipSection from '../components/MembershipSection';
+import Service from '../components/Service';
 
 function Home() {
   const heroSlides = [
@@ -46,7 +47,7 @@ function Home() {
   
       <PackageSection />
 
-      <div className="py-2 bg-fuchsia-200" style={{height:"200px"}}></div>
+      <Service />
     </>
   );
 }
