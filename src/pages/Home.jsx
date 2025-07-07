@@ -23,6 +23,74 @@ function Home() {
     },
   ];
   
+  const cardData = [
+  { id: 1,
+    title: ['Kitten', <br key="1" />, 'Care'],
+    price: "12,170",
+    backgroundColor: "#C46200",
+    imageUrl: "/cat2R.png", 
+    height: 450, 
+    features: ["Vaccine shots", "Unlimited nail trims", "Deworming"],
+    buttonPaddingBottom: "3rem" 
+  },
+  { id: 2,
+    title:['Puppy', <br key="1" />, 'Care'],
+    price: "15,370",
+    backgroundColor: "#9FB3DF",
+    imageUrl: "/cat1R.png",  
+    height: 500, 
+    features: ["Vaccine shots", "Unlimited nail trims", "Deworming"],
+    buttonPaddingBottom: "4rem" 
+  },
+  { id: 3, 
+    title: "Petcare",
+    price: "21,010",
+    backgroundColor: "#FF8A8A",
+    imageUrl: "/dogRR.png", 
+    height: 550, 
+    features: ["Grooming Sessions", "Body Clippings", "Hydrotherapy sessions"],
+    buttonPaddingBottom: "5rem" 
+  },
+  { id: 4, 
+    title: "Adult Dog",
+    price: "12,240",
+    backgroundColor: "#F3C623",
+    imageUrl: "/dogRR.png", 
+    height: 600, 
+    features: ["Vaccine shots", "Health Construction", "Ear cleaning"],
+    buttonPaddingBottom: "6rem" 
+  }, // middle - tallest
+  { id: 5, 
+    title: "Basic Petcare",
+    price: "14,999",
+    backgroundColor: "#A3CB38",
+    imageUrl: "/dogRR.png", 
+    height: 550, 
+    features: ["Nail trimming", "1 Vet visit", "Basic grooming"],
+    buttonPaddingBottom: "5rem" 
+  },
+  { id: 6,
+    title: "Basic Petcare",
+    price: "14,999",
+    backgroundColor: "#A3CB38",
+    imageUrl: "/dogRR.png",  
+    height: 500,
+    features: ["Nail trimming", "1 Vet visit", "Basic grooming"], 
+    buttonPaddingBottom: "4rem" 
+  },
+  { id: 7, 
+    title: "Basic Petcare",
+    price: "14,999",
+    backgroundColor: "#A3CB38",
+    imageUrl: "/dogRR.png", 
+    height: 450, 
+    features: ["Nail trimming", "1 Vet visit", "Basic grooming"],
+    buttonPaddingBottom: "3rem" 
+  },
+];
+
+const middleIndex = Math.floor(cardData.length / 2);
+
 
   return (
     <>  
@@ -45,7 +113,45 @@ function Home() {
         </div>
       </div>
 
-      <Packages />
+    
+  
+    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-red-200 pt-20">
+      <div className="flex flex-col items-center text-center px-4">
+        <h1 className="text-white font-extrabold text-2xl md:text-6xl">Our Packages</h1>
+        <p className="text-[#b1b1b1] mb-10 py-4 max-w-2xl">
+          Choose from an extensive set of curated plans and select the one that fits your pet’s needs the best. Individual service options are also available.
+        </p>
+      </div>
+
+      <div className="max-w-7xl w-full mx-auto flex justify-center items-end mt-12 h-[650px]">
+        {cardData.map((card, index) => {
+          const offset = (index - middleIndex) * 120; // horizontal overlap
+          const zIndex = 100 - Math.abs(index - middleIndex); // middle is top
+          return (
+            <div
+              key={card.id}
+              className="absolute transition-transform duration-300"
+              style={{
+                transform: `translateX(${offset}px)`,
+                zIndex,
+              }}
+            >
+              <Packages
+                title={card.title}
+                price={card.price}
+                backgroundColor={card.backgroundColor}
+                imageUrl={card.imageUrl}
+                height={card.height}
+                buttonPaddingBottom={card.buttonPaddingBottom}
+                features={card.features}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+      
     </>
   );
 }
