@@ -83,7 +83,7 @@ const PackageSection = () => {
   const middleIndex = Math.floor(cardData.length / 2);
   const carouselRef = useRef(null);
   const desktopRef = useRef(null);
-  const isInView = useInView(desktopRef, { once: true, margin: "-100px" });
+  const isInView = useInView(desktopRef, { once: false, margin: "-100px" });
 
   const handlePrev = () => {
     setCurrentSlide(prev => (prev === 0 ? cardData.length - 1 : prev - 1));
@@ -94,7 +94,7 @@ const PackageSection = () => {
   };
 
   return (
-    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-black pt-20">
+    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-black pt-20 overflow-hidden">
       <div className="flex flex-col items-center text-center px-4">
         <h1 className="text-white font-extrabold text-2xl md:text-6xl">Our Packages</h1>
         <p className="text-[#b1b1b1] mb-10 py-4 max-w-2xl">
@@ -103,17 +103,18 @@ const PackageSection = () => {
       </div>
 
       {/* Desktop View (lg and up) */}
-      <div ref={desktopRef} className="hidden lg:block max-w-7xl w-full mx-auto h-[650px]">
-        <div className="flex justify-center items-end mt-12 h-full">
+      <div  className="hidden lg:block max-w-7xl w-full mx-auto h-[650px]">
+        <div className="flex justify-center items-end mt-12 h-full relative">
           {cardData.map((card, index) => {
-            const offset = (index - middleIndex) * 200;
+            const offset = (index - middleIndex) * 120;
             const isHovered = index === hoveredIndex;
             const zIndex = isHovered ? 999 : 100 - Math.abs(index - middleIndex);
             const dimmed = hoveredIndex !== null && !isHovered;
-
+            
             return (
               <motion.div
                 key={card.id}
+                ref={desktopRef}
                 className="absolute transition-transform duration-300"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -121,23 +122,22 @@ const PackageSection = () => {
                   zIndex,
                 }}
                 initial={{ 
-                  y: 100, 
-                  x: index === middleIndex ? 0 : 0, 
+                  y: 400, // Start below the visible area
+                  x: offset, 
                   opacity: 0 
                 }}
                 animate={isInView ? { 
-                  y: 0, 
+                  y: 0, // Move to final position
                   x: offset, 
                   opacity: 1 
                 } : { 
-                  y: 100, 
-                  x: index === middleIndex ? 0 : 0, 
+                  y: 400, 
+                  x: offset, 
                   opacity: 0 
                 }}
                 transition={{ 
-                  duration: 0.8,
-                  delay: index * 0.1,
-                  ease: "easeOut"
+                  duration: 0.5,
+                  ease: [0.16, 0.77, 0.47, 0.97] // Smooth easing curve
                 }}
               >
                 <Packages
@@ -185,7 +185,7 @@ const PackageSection = () => {
           </div>
         </div>
 
-        {/* Navigation Arrows - Adjusted positioning to be closer to cards */}
+        {/* Navigation Arrows */}
         <button 
           onClick={handlePrev}
           className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full p-2 z-10"
@@ -200,7 +200,6 @@ const PackageSection = () => {
         >
           <FiChevronRight className="text-white text-2xl" />
         </button>
-
       </div>
     </div>
   );
