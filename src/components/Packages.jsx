@@ -11,7 +11,7 @@ const Packages = ({
 }) => {
   return (
     <div
-      className="w-90 flex flex-col rounded-t-3xl h-[500px] overflow-hidden shadow-lg p-8 font-sans bg-no-repeat bg-[right_0rem_bottom] bg-[length:200px]"
+      className="w-90 flex flex-col rounded-t-3xl h-[500px] overflow-hidden shadow-lg p-8 font-sans bg-no-repeat bg-[right_2rem_bottom] bg-[length:200px]"
       style={{
         backgroundColor,
         height: `${height}px`,
@@ -21,7 +21,7 @@ const Packages = ({
       {/* Main content (flex-grow takes remaining space) */}
       <div className="flex-grow">
         <div className="mb-4">
-          <h2 className="text-4xl font-extrabold text-white">{title}</h2>
+          <h2 className="text-5xl font-extrabold text-white">{title}</h2>
         </div>
 
         <div className="mb-6">

@@ -28,7 +28,7 @@ function Home() {
     title: ['Kitten', <br key="1" />, 'Care'],
     price: "12,170",
     backgroundColor: "#C46200",
-    imageUrl: "/cat2R.png", 
+    imageUrl: "/cat3R.png", 
     height: 450, 
     features: ["Vaccine shots", "Unlimited nail trims", "Deworming"],
     buttonPaddingBottom: "3rem" 
@@ -46,7 +46,7 @@ function Home() {
     title: "Petcare",
     price: "21,010",
     backgroundColor: "#FF8A8A",
-    imageUrl: "/dogRR.png", 
+    imageUrl: "/cat2R.png", 
     height: 550, 
     features: ["Grooming Sessions", "Body Clippings", "Hydrotherapy sessions"],
     buttonPaddingBottom: "5rem" 
@@ -61,30 +61,30 @@ function Home() {
     buttonPaddingBottom: "6rem" 
   }, // middle - tallest
   { id: 5, 
-    title: "Basic Petcare",
-    price: "14,999",
-    backgroundColor: "#A3CB38",
-    imageUrl: "/dogRR.png", 
+    title: "Adult Cat",
+    price: "10,470",
+    backgroundColor: "#87CEEB",
+    imageUrl: "/cat2R.png", 
     height: 550, 
-    features: ["Nail trimming", "1 Vet visit", "Basic grooming"],
+    features: ["Vaccine shots", "Unlimited nail trims", "Deworming"],
     buttonPaddingBottom: "5rem" 
   },
   { id: 6,
-    title: "Basic Petcare",
-    price: "14,999",
-    backgroundColor: "#A3CB38",
-    imageUrl: "/dogRR.png",  
+    title: "Grooming",
+    price: "14,640",
+    backgroundColor: "#DB8DD0",
+    imageUrl: "/cat1R.png",  
     height: 500,
-    features: ["Nail trimming", "1 Vet visit", "Basic grooming"], 
+    features: ["Basic baths", "Massages", "Basic grooming"], 
     buttonPaddingBottom: "4rem" 
   },
   { id: 7, 
-    title: "Basic Petcare",
-    price: "14,999",
-    backgroundColor: "#A3CB38",
-    imageUrl: "/dogRR.png", 
+    title: "Boarding",
+    price: "26,560",
+    backgroundColor: "#DF9755",
+    imageUrl: "/cat3R.png", 
     height: 450, 
-    features: ["Nail trimming", "1 Vet visit", "Basic grooming"],
+    features: ["Grooming Sessions", "15 Days per year", "Hydrotherapy sessions"],
     buttonPaddingBottom: "3rem" 
   },
 ];
@@ -115,7 +115,7 @@ const middleIndex = Math.floor(cardData.length / 2);
 
     
   
-    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-red-200 pt-20">
+    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-black pt-20">
       <div className="flex flex-col items-center text-center px-4">
         <h1 className="text-white font-extrabold text-2xl md:text-6xl">Our Packages</h1>
         <p className="text-[#b1b1b1] mb-10 py-4 max-w-2xl">
@@ -151,7 +151,7 @@ const middleIndex = Math.floor(cardData.length / 2);
       </div>
     </div>
 
-      
+      <div className="py-2 bg-fuchsia-200" style={{height:"200px"}}></div>
     </>
   );
 }
