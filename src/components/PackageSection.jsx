@@ -1,5 +1,7 @@
 import { useState, useRef } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import Packages from '../components/Packages';
 
 const PackageSection = () => {
@@ -80,6 +82,8 @@ const PackageSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const middleIndex = Math.floor(cardData.length / 2);
   const carouselRef = useRef(null);
+  const desktopRef = useRef(null);
+  const isInView = useInView(desktopRef, { once: true, margin: "-100px" });
 
   const handlePrev = () => {
     setCurrentSlide(prev => (prev === 0 ? cardData.length - 1 : prev - 1));
@@ -99,23 +103,41 @@ const PackageSection = () => {
       </div>
 
       {/* Desktop View (lg and up) */}
-      <div className="hidden lg:block max-w-7xl w-full mx-auto h-[650px]">
+      <div ref={desktopRef} className="hidden lg:block max-w-7xl w-full mx-auto h-[650px]">
         <div className="flex justify-center items-end mt-12 h-full">
           {cardData.map((card, index) => {
-            const offset = (index - middleIndex) * 130;
+            const offset = (index - middleIndex) * 200;
             const isHovered = index === hoveredIndex;
             const zIndex = isHovered ? 999 : 100 - Math.abs(index - middleIndex);
             const dimmed = hoveredIndex !== null && !isHovered;
 
             return (
-              <div
+              <motion.div
                 key={card.id}
                 className="absolute transition-transform duration-300"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 style={{
-                  transform: `translateX(${offset}px)`,
                   zIndex,
+                }}
+                initial={{ 
+                  y: 100, 
+                  x: index === middleIndex ? 0 : 0, 
+                  opacity: 0 
+                }}
+                animate={isInView ? { 
+                  y: 0, 
+                  x: offset, 
+                  opacity: 1 
+                } : { 
+                  y: 100, 
+                  x: index === middleIndex ? 0 : 0, 
+                  opacity: 0 
+                }}
+                transition={{ 
+                  duration: 0.8,
+                  delay: index * 0.1,
+                  ease: "easeOut"
                 }}
               >
                 <Packages
@@ -128,7 +150,7 @@ const PackageSection = () => {
                   features={card.features}
                   dimmed={dimmed}
                 />
-              </div>
+              </motion.div>
             );
           })}
         </div>
