@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Carousel from '../components/Carousel';
 import HelpButtonModal from '../components/HelpButtonModal';
 import BookAppointment from '../components/BookAppointment';
@@ -90,6 +91,7 @@ function Home() {
 ];
 
 const middleIndex = Math.floor(cardData.length / 2);
+const [hoveredIndex, setHoveredIndex] = useState(null);
 
 
   return (
@@ -125,16 +127,20 @@ const middleIndex = Math.floor(cardData.length / 2);
 
       <div className="max-w-7xl w-full mx-auto flex justify-center items-end mt-12 h-[650px]">
         {cardData.map((card, index) => {
-          const offset = (index - middleIndex) * 120; // horizontal overlap
-          const zIndex = 100 - Math.abs(index - middleIndex); // middle is top
+          const offset = (index - middleIndex) * 130; // horizontal overlap
+          const isHovered = index === hoveredIndex;
+    const zIndex = isHovered ? 999 : 100 - Math.abs(index - middleIndex); // hover brings to front
+
           return (
             <div
               key={card.id}
               className="absolute transition-transform duration-300"
-              style={{
-                transform: `translateX(${offset}px)`,
-                zIndex,
-              }}
+        onMouseEnter={() => setHoveredIndex(index)}
+        onMouseLeave={() => setHoveredIndex(null)}
+        style={{
+          transform: `translateX(${offset}px)`,
+          zIndex,
+        }}
             >
               <Packages
                 title={card.title}

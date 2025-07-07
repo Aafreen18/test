@@ -11,7 +11,7 @@ const Packages = ({
 }) => {
   return (
     <div
-      className="w-90 flex flex-col rounded-t-3xl h-[500px] overflow-hidden shadow-lg p-8 font-sans bg-no-repeat bg-[right_2rem_bottom] bg-[length:200px]"
+      className="w-90 flex flex-col rounded-t-3xl h-[500px] overflow-hidden shadow-lg p-8 font-sans bg-no-repeat bg-[right_2rem_bottom] bg-[length:200px] hover:z-100 transition-all duration-300"
       style={{
         backgroundColor,
         height: `${height}px`,
