@@ -1,89 +1,39 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import Packages from '../components/Packages';
 
-const PackageSection = () => {
-  const cardData = [
-    { 
-      id: 1,
-      title: ['Kitten', <br key="1" />, 'Care'],
-      price: "12,170",
-      backgroundColor: "#C46200",
-      imageUrl: "/cat3R.png", 
-      height: 450, 
-      features: ["Vaccine shots", "Unlimited nail trims", "Deworming"],
-      buttonPaddingBottom: "3rem" 
-    },
-    { 
-      id: 2,
-      title: ['Puppy', <br key="1" />, 'Care'],
-      price: "15,370",
-      backgroundColor: "#9FB3DF",
-      imageUrl: "/cat1R.png",  
-      height: 500, 
-      features: ["Vaccine shots", "Unlimited nail trims", "Deworming"],
-      buttonPaddingBottom: "4rem" 
-    },
-    { 
-      id: 3, 
-      title: "Petcare",
-      price: "21,010",
-      backgroundColor: "#FF8A8A",
-      imageUrl: "/cat2R.png", 
-      height: 550, 
-      features: ["Grooming Sessions", "Body Clippings", "Hydrotherapy sessions"],
-      buttonPaddingBottom: "5rem" 
-    },
-    { 
-      id: 4, 
-      title: "Adult Dog",
-      price: "12,240",
-      backgroundColor: "#F3C623",
-      imageUrl: "/dogRR.png", 
-      height: 600, 
-      features: ["Vaccine shots", "Health Construction", "Ear cleaning"],
-      buttonPaddingBottom: "6rem" 
-    },
-    { 
-      id: 5, 
-      title: "Adult Cat",
-      price: "10,470",
-      backgroundColor: "#87CEEB",
-      imageUrl: "/cat2R.png", 
-      height: 550, 
-      features: ["Vaccine shots", "Unlimited nail trims", "Deworming"],
-      buttonPaddingBottom: "5rem" 
-    },
-    { 
-      id: 6,
-      title: "Grooming",
-      price: "14,640",
-      backgroundColor: "#DB8DD0",
-      imageUrl: "/cat1R.png",  
-      height: 500,
-      features: ["Basic baths", "Massages", "Basic grooming"], 
-      buttonPaddingBottom: "4rem" 
-    },
-    { 
-      id: 7, 
-      title: "Boarding",
-      price: "26,560",
-      backgroundColor: "#DF9755",
-      imageUrl: "/cat3R.png", 
-      height: 450, 
-      features: ["Grooming Sessions", "15 Days per year", "Hydrotherapy sessions"],
-      buttonPaddingBottom: "3rem" 
-    },
-  ];
 
+import { client, urlFor } from '../lib/sanity'; 
+
+const PackageSection = () => {
+  const [cardData, setCardData] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const middleIndex = Math.floor(cardData.length / 2);
   const carouselRef = useRef(null);
   const desktopRef = useRef(null);
   const isInView = useInView(desktopRef, { once: false, margin: "-100px" });
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      const data = await client.fetch(`*[_type == "package"] | order(_createdAt asc)`);
+      const transformed = data.map((item, idx) => ({
+        id: item._id || idx,
+        title: item.title.includes('<br') ? item.title : item.title.split('\\n').map((t, i) => i === 1 ? [<br key={i} />, t] : t),
+        price: item.price,
+        backgroundColor: item.backgroundColor,
+        imageUrl: urlFor(item.imageUrl).url(),
+        height: item.height,
+        buttonPaddingBottom: item.buttonPaddingBottom,
+        features: item.features,
+      }));
+      setCardData(transformed);
+    };
+
+    fetchPackages();
+  }, []);
 
   const handlePrev = () => {
     setCurrentSlide(prev => (prev === 0 ? cardData.length - 1 : prev - 1));
@@ -103,58 +53,55 @@ const PackageSection = () => {
       </div>
 
       {/* Desktop View (lg and up) */}
-      <div  className="hidden lg:block max-w-7xl w-full mx-auto h-[650px]">
-        <div className="flex justify-center items-end mt-12 h-full relative">
-          {cardData.map((card, index) => {
-            const offset = (index - middleIndex) * 120;
-            const isHovered = index === hoveredIndex;
-            const zIndex = isHovered ? 999 : 100 - Math.abs(index - middleIndex);
-            const dimmed = hoveredIndex !== null && !isHovered;
-            
-            return (
-              <motion.div
-                key={card.id}
-                ref={desktopRef}
-                className="absolute transition-transform duration-300"
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                style={{
-                  zIndex,
-                }}
-                initial={{ 
-                  y: 400, // Start below the visible area
-                  x: offset, 
-                  opacity: 0 
-                }}
-                animate={isInView ? { 
-                  y: 0, // Move to final position
-                  x: offset, 
-                  opacity: 1 
-                } : { 
-                  y: 400, 
-                  x: offset, 
-                  opacity: 0 
-                }}
-                transition={{ 
-                  duration: 0.5,
-                  ease: [0.16, 0.77, 0.47, 0.97] // Smooth easing curve
-                }}
-              >
-                <Packages
-                  title={card.title}
-                  price={card.price}
-                  backgroundColor={card.backgroundColor}
-                  imageUrl={card.imageUrl}
-                  height={card.height}
-                  buttonPaddingBottom={card.buttonPaddingBottom}
-                  features={card.features}
-                  dimmed={dimmed}
-                />
-              </motion.div>
-            );
-          })}
+      
+      {cardData.length > 0 && (
+        <div className="hidden lg:block max-w-7xl w-full mx-auto h-[650px]">
+          <div
+            ref={desktopRef} // ✅ use ref here only
+            className="flex justify-center items-end mt-12 h-full relative"
+          >
+            {cardData.map((card, index) => {
+              const middleIndex = Math.floor(cardData.length / 2);
+              const offset = (index - middleIndex) * 120;
+              const isHovered = index === hoveredIndex;
+              const zIndex = isHovered ? 999 : 100 - Math.abs(index - middleIndex);
+              const dimmed = hoveredIndex !== null && !isHovered;
+
+              return (
+                <motion.div
+                  key={card.id}
+                  className="absolute transition-transform duration-300"
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  style={{ zIndex }}
+                  initial={{ y: 400, x: offset, opacity: 0 }}
+                  animate={
+                    isInView
+                      ? { y: 0, x: offset, opacity: 1 }
+                      : { y: 400, x: offset, opacity: 0 }
+                  }
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.16, 0.77, 0.47, 0.97],
+                  }}
+                >
+                  <Packages
+                    title={card.title}
+                    price={card.price}
+                    backgroundColor={card.backgroundColor}
+                    imageUrl={card.imageUrl}
+                    height={card.height}
+                    buttonPaddingBottom={card.buttonPaddingBottom}
+                    features={card.features}
+                    dimmed={dimmed}
+                  />
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
+
 
       {/* Mobile/Tablet Carousel View (lg and down) */}
       <div className="lg:hidden max-w-7xl w-full mx-auto px-4 relative">
