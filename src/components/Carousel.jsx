@@ -79,33 +79,27 @@ const Carousel = ({ slides, interval = 3000 }) => {
       </button>
 
       {/* Carousel content */}
-      <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 py-8">
-        {/* Mobile: Image first */}
-        <div className="w-full md:w-1/2 h-64 md:h-[400px] relative rounded-lg overflow-hidden order-1 md:order-2">
-          <img
-            src={slides[currentSlide].image}
-            alt={slides[currentSlide].title}
-            className={`w-full h-full object-cover object-center transition-opacity duration-300 ${
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-8 py-6 lg:py-8">
+        {/* Content - appears first on mobile/medium, left on large */}
+        <div className="w-full lg:w-1/2 px-2 lg:px-4 lg:pr-8 flex flex-col justify-center order-1">
+          <h1
+            className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 lg:mb-4 transition-opacity duration-300 ${
               isTransitioning ? 'opacity-0' : 'opacity-100'
             }`}
-          />
-        </div>
-
-        {/* Left side - Content (mobile: appears below image) */}
-        <div className="w-full md:w-1/2 pr-0 md:pr-10 flex flex-col justify-center order-2 md:order-1">
-          <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4 transition-opacity duration-300 ${
-            isTransitioning ? 'opacity-0' : 'opacity-100'
-          }`}>
+          >
             {slides[currentSlide].title}
           </h1>
-          <p className={`text-gray-600 mb-6 text-sm sm:text-base transition-opacity duration-300 ${
-            isTransitioning ? 'opacity-0' : 'opacity-100'
-          }`}>
+
+          <p
+            className={`text-gray-600 mb-4 lg:mb-6 text-sm sm:text-base lg:text-lg transition-opacity duration-300 ${
+              isTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
             {slides[currentSlide].description}
           </p>
-          
+
           {/* Slide indicators */}
-          <div className="flex space-x-2">
+          <div className="flex flex-wrap gap-2">
             {slides.map((_, index) => (
               <button
                 key={index}
@@ -117,6 +111,17 @@ const Carousel = ({ slides, interval = 3000 }) => {
               />
             ))}
           </div>
+        </div>
+
+        {/* Image - appears below content on mobile/medium, right on large */}
+        <div className="w-full lg:w-1/2 h-48 sm:h-64 lg:h-[400px] relative rounded-lg overflow-hidden order-2 aspect-[16/9]">
+          <img
+            src={slides[currentSlide].image}
+            alt={slides[currentSlide].title}
+            className={`w-full h-full object-cover object-center transition-opacity duration-300 ${
+              isTransitioning ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
         </div>
       </div>
 
