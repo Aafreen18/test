@@ -41,10 +41,10 @@ const PackageSection = () => {
   };
 
   return (
-    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-black pt-20 overflow-hidden">
+    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#821b1f] pt-20 overflow-hidden">
       <div className="flex flex-col items-center text-center px-4">
-        <h1 className="text-white font-extrabold text-2xl md:text-6xl">Our Packages</h1>
-        <p className="text-[#b1b1b1] mb-10 py-4 max-w-2xl">
+        <h1 className="text-[#b98a32] font-extrabold text-2xl md:text-6xl">Our Packages</h1>
+        <p className="text-[#f7f3ea] mb-10 py-4 max-w-2xl">
           Choose from an extensive set of curated plans and select the one that fits your pet's needs the best. Individual service options are also available.
         </p>
       </div>
@@ -119,7 +119,7 @@ const PackageSection = () => {
                 <Packages
                   title={card.title}
                   price={card.price}
-                  backgroundColor="#F3C623"
+                  backgroundColor="#b98a32"
                   imageUrl={card.imageUrl}
                   height="5rem"
                   buttonPaddingBottom="5rem"

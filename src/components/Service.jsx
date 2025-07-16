@@ -20,7 +20,7 @@ const Service = () => {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl opacity-90">
             Wellness and happiness for your pets. At DCC, they come first.
           </p>
-          <button className="bg-black hover:bg-white text-center text-white hover:text-black font-semibold py-3 px-8 rounded-3xl w-fit text-lg transition duration-300 transform hover:scale-105 mb-10">
+          <button className="bg-[#821b1f] hover:bg-white text-center text-white hover:text-[#b98a32] font-semibold py-3 px-8 rounded-3xl w-fit text-lg transition duration-300 transform hover:scale-105 mb-10">
             View Our Sevices
           </button>
         </div>

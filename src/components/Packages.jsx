@@ -13,7 +13,7 @@ const Packages = ({
     <div
       className="w-90 flex flex-col rounded-t-3xl h-[500px] overflow-hidden shadow-lg p-8 font-sans bg-no-repeat bg-[right_2rem_bottom] bg-[length:200px] hover:z-100 transition-all duration-300"
       style={{
-        backgroundColor: dimmed ? 'grey' : backgroundColor,
+        backgroundColor: dimmed ? '#b98a32' : backgroundColor,
         height: `${height}px`,
         backgroundImage: `url('${imageUrl}')`,
       }}
@@ -58,7 +58,7 @@ const Packages = ({
           paddingBottom: buttonPaddingBottom, 
         }}
       >
-        <button className="bg-black text-center font-bold hover:bg-white hover:text-black text-white py-2 px-4 rounded-3xl transition duration-200">
+        <button className="bg-[#821b1f] text-center font-bold hover:bg-white hover:text-[#821b1f] text-white py-2 px-4 rounded-3xl transition duration-200">
           Choose
         </button>
       </div>
