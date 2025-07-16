@@ -3,18 +3,15 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import Packages from '../components/Packages';
-
-
 import { client, urlFor } from '../lib/sanity'; 
 
 const PackageSection = () => {
   const [cardData, setCardData] = useState([]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const middleIndex = Math.floor(cardData.length / 2);
   const carouselRef = useRef(null);
-  const desktopRef = useRef(null);
-  const isInView = useInView(desktopRef, { once: false, margin: "-100px" });
+  const desktopContainerRef = useRef(null);
+  const isInView = useInView(desktopContainerRef, { once: false, margin: "0px" });
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -53,55 +50,56 @@ const PackageSection = () => {
       </div>
 
       {/* Desktop View (lg and up) */}
-      
-      {cardData.length > 0 && (
-        <div className="hidden lg:block max-w-7xl w-full mx-auto h-[650px]">
-          <div
-            ref={desktopRef} // ✅ use ref here only
-            className="flex justify-center items-end mt-12 h-full relative"
-          >
-            {cardData.map((card, index) => {
-              const middleIndex = Math.floor(cardData.length / 2);
-              const offset = (index - middleIndex) * 120;
-              const isHovered = index === hoveredIndex;
-              const zIndex = isHovered ? 999 : 100 - Math.abs(index - middleIndex);
-              const dimmed = hoveredIndex !== null && !isHovered;
+      <div ref={desktopContainerRef} className="hidden lg:block w-full">
+        {cardData.length > 0 && (
+          <div className="max-w-7xl w-full mx-auto h-[650px] relative">
+            <div className="flex justify-center items-end h-full w-full">
+              {cardData.map((card, index) => {
+                const middleIndex = Math.floor(cardData.length / 2);
+                const offset = (index - middleIndex) * 120;
+                const isHovered = index === hoveredIndex;
+                const zIndex = isHovered ? 999 : 100 - Math.abs(index - middleIndex);
+                const dimmed = hoveredIndex !== null && !isHovered;
 
-              return (
-                <motion.div
-                  key={card.id}
-                  className="absolute transition-transform duration-300"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  style={{ zIndex }}
-                  initial={{ y: 400, x: offset, opacity: 0 }}
-                  animate={
-                    isInView
-                      ? { y: 0, x: offset, opacity: 1 }
-                      : { y: 400, x: offset, opacity: 0 }
-                  }
-                  transition={{
-                    duration: 0.5,
-                    ease: [0.16, 0.77, 0.47, 0.97],
-                  }}
-                >
-                  <Packages
-                    title={card.title}
-                    price={card.price}
-                    backgroundColor={card.backgroundColor}
-                    imageUrl={card.imageUrl}
-                    height={card.height}
-                    buttonPaddingBottom={card.buttonPaddingBottom}
-                    features={card.features}
-                    dimmed={dimmed}
-                  />
-                </motion.div>
-              );
-            })}
+                return (
+                  <motion.div
+                    key={card.id}
+                    className="absolute bottom-0"
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    style={{ 
+                      zIndex,
+                      x: offset,
+                    }}
+                    initial={{ y: 400, opacity: 0 }}
+                    animate={
+                      isInView
+                        ? { y: 0, opacity: 1 }
+                        : { y: 400, opacity: 0 }
+                    }
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.16, 0.77, 0.47, 0.97],
+                      delay: index * 0.1
+                    }}
+                  >
+                    <Packages
+                      title={card.title}
+                      price={card.price}
+                      backgroundColor={card.backgroundColor}
+                      imageUrl={card.imageUrl}
+                      height={card.height}
+                      buttonPaddingBottom={card.buttonPaddingBottom}
+                      features={card.features}
+                      dimmed={dimmed}
+                    />
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
-
+        )}
+      </div>
 
       {/* Mobile/Tablet Carousel View (lg and down) */}
       <div className="lg:hidden max-w-7xl w-full mx-auto px-4 relative">

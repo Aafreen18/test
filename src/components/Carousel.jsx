@@ -105,7 +105,7 @@ const Carousel = ({ slides, interval = 3000 }) => {
                 key={index}
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
-                  index === currentSlide ? 'bg-green-500' : 'bg-gray-300'
+                  index === currentSlide ? 'bg-[#821b1f]' : 'bg-[#b98a32]'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
