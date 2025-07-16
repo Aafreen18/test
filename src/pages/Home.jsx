@@ -4,6 +4,7 @@ import HelpButtonModal from '../components/HelpButtonModal';
 import BookAppointment from '../components/BookAppointment';
 import MembershipSection from '../components/MembershipSection';
 import Service from '../components/Service';
+import AppointmentSection from '../components/AppointmentSection';
 
 import React, { useEffect, useState } from 'react';
 import { client } from '../lib/sanity';
@@ -68,6 +69,8 @@ function Home() {
       <PackageSection />
 
       <Service />
+
+      <AppointmentSection/>
     </>
   );
 }

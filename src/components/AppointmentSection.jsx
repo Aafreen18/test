@@ -6,14 +6,14 @@ const Service = () => {
 
   useEffect(() => {
     client
-      .fetch(`*[_type == "serviceSection"][0]`)
+      .fetch(`*[_type == "appointmentSection"][0]`)
       .then((res) => setData(res));
   }, []);
 
   if (!data) return null;
 
   return (
-    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] overflow-hidden">
+    <div className="w-screen lg:h-screen relative left-1/2 right-1/2 -mx-[50vw] overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 w-full h-full">
         {data.backgroundImage && (
