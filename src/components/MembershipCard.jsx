@@ -2,45 +2,47 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 const MembershipCard = ({ time, price, hoverColor, dimmed }) => {
   return (
-    <div className={`max-w-xs mx-auto bg-black rounded-3xl shadow-xl overflow-hidden my-4 px-4  ${hoverColor}`}
-     style={dimmed ? { backgroundColor: "#0B1D51" } : {}}>
+    <div 
+      className={`max-w-xs mx-auto bg-[#821b1f] rounded-3xl shadow-xl overflow-hidden my-4 px-4 transition-all duration-300 ${hoverColor}`}
+      style={dimmed ? { backgroundColor: "#5e3a1f", opacity: 0.8 } : {}}
+    >
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2 text-white">
+        <div className="font-bold text-xl mb-2 text-[#f7f3ea]">
           {time}<br /> Membership
         </div>
-        <p className="text-white text-3xl font-semibold mb-4 border-b pb-2 border-gray-400 ">{price}</p>
+        <p className="text-[#f7f3ea] text-3xl font-semibold mb-4 border-b pb-2 border-[#b98a32]">{price}</p>
         
-        <p className="text-gray-200 text-sm mb-4">
+        <p className="text-[#f7f3ea] text-sm mb-4 opacity-80">
           Purchase possible on DCC PetConnect App
         </p>
-        <p className="text-gray-300 text-sm mb-4">
+        <p className="text-[#f7f3ea] text-sm mb-4 opacity-70">
           (GST Included + T&C Apply)
         </p>
         
-        <div className="mb-4 text-white">
-          <h3 className="font-semibold text-white mb-2">Inclusive of:</h3>
+        <div className="mb-4 text-[#f7f3ea]">
+          <h3 className="font-semibold mb-2">Inclusive of:</h3>
           <ul className="space-y-2">
             <li className="flex items-center">
-              <span className="mr-2"><IoMdCheckmarkCircleOutline /></span>
-              <span className="text-gray-200">10% off on Pharmacy</span>
+              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
+              <span>10% off on Pharmacy</span>
             </li>
             <li className="flex items-center">
-              <span className="mr-2"><IoMdCheckmarkCircleOutline /></span>
-              <span className="text-gray-200">Free Consultation</span>
+              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
+              <span>Free Consultation</span>
             </li>
             <li className="flex items-baseline">
-              <span className="mr-2 "><IoMdCheckmarkCircleOutline /></span>
-              <span className="text-gray-200">15% off on Petcare & Medical services</span>
+              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
+              <span>15% off on Petcare & Medical services</span>
             </li>
             <li className="flex items-center">
-              <span className="mr-2"><IoMdCheckmarkCircleOutline /></span>
-              <span className="text-gray-200">Messaging access</span>
+              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
+              <span>Messaging access</span>
             </li>
           </ul>
         </div>
         
         <div className="pt-4">
-          <button className="bg-white font-bold hover:bg-purple-950 hover:text-white hover:border-white text-black py-2 px-4 rounded-3xl transition duration-200">
+          <button className="w-full bg-[#b98a32] font-bold hover:bg-[#f7f3ea] hover:text-[#821b1f] text-[#f7f3ea] py-2 px-4 rounded-3xl transition duration-200 border border-transparent hover:border-[#821b1f]">
             Choose
           </button>
         </div>
