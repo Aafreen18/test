@@ -1,6 +1,6 @@
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
-const MembershipCard = ({ time, price, hoverColor, dimmed }) => {
+const MembershipCard = ({ time, price, hoverColor, dimmed, benefits }) => {
   return (
     <div 
       className={`max-w-xs mx-auto bg-[#821b1f] rounded-3xl shadow-xl overflow-hidden my-4 px-4 transition-all duration-300 ${hoverColor}`}
@@ -22,22 +22,14 @@ const MembershipCard = ({ time, price, hoverColor, dimmed }) => {
         <div className="mb-4 text-[#f7f3ea]">
           <h3 className="font-semibold mb-2">Inclusive of:</h3>
           <ul className="space-y-2">
-            <li className="flex items-center">
-              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
-              <span>10% off on Pharmacy</span>
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
-              <span>Free Consultation</span>
-            </li>
-            <li className="flex items-baseline">
-              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
-              <span>15% off on Petcare & Medical services</span>
-            </li>
-            <li className="flex items-center">
-              <span className="mr-2 text-[#b98a32]"><IoMdCheckmarkCircleOutline /></span>
-              <span>Messaging access</span>
-            </li>
+            {benefits.map((benefit, index) => (
+              <li key={index} className="flex items-center">
+                <span className="mr-2 text-[#b98a32]">
+                  <IoMdCheckmarkCircleOutline />
+                </span>
+                <span className="text-gray-200">{benefit}</span>
+              </li>
+            ))}
           </ul>
         </div>
         

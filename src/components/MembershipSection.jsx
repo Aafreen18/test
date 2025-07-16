@@ -1,16 +1,23 @@
 import { motion } from "framer-motion";
 import MembershipCard from '../components/MembershipCard';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { client } from "../lib/sanity";
 
 const MembershipSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [memberships, setMemberships] = useState([]);
 
-  const memberships = [
-    { time: "3 Monthly", price: "₹1599", hoverColor: "hover:bg-[#d4a762]" },
-    { time: "6 Monthly", price: "₹2599", hoverColor: "hover:bg-[#821b1f]" },
-    { time: "Annual", price: "₹4299", hoverColor: "hover:bg-[#5e3a1f]" },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await client.fetch(`*[_type == "membership"] | order(_createdAt asc)`);
+      setMemberships(data);
+    };
+
+    fetchData();
+  }, []);
+
 
   const prev = () => {
     setCurrentIndex((prev) => (prev === 0 ? memberships.length - 1 : prev - 1));
@@ -41,8 +48,7 @@ const MembershipSection = () => {
     },
   };
 
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
+  
   return (
     <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] bg-[#f7f3ea]" style={{ paddingTop: "200px", paddingBottom: "100px" }}>
 
@@ -88,21 +94,25 @@ const MembershipSection = () => {
             </button>
 
             {/* Animated Card */}
-            <motion.div
-              key={currentIndex}
-              custom={currentIndex}
-              initial={{ opacity: 0, y: 80 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -50 }}
-              transition={{ duration: 0.5 }}
-              className="w-full flex justify-center"
-            >
-              <MembershipCard
-                time={memberships[currentIndex].time}
-                price={memberships[currentIndex].price}
-                hoverColor={memberships[currentIndex].hoverColor}
-              />
-            </motion.div>
+            {memberships.length > 0 && (
+              <motion.div
+                key={currentIndex}
+                custom={currentIndex}
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.5 }}
+                className="w-full flex justify-center"
+              >
+                <MembershipCard
+                  time={memberships[currentIndex].time}
+                  price={memberships[currentIndex].price}
+                  hoverColor={memberships[currentIndex].hoverColor}
+                  benefits={memberships[currentIndex].benefits}
+                />
+              </motion.div>
+            )}
+
 
             {/* Right Arrow */}
             <button
@@ -143,6 +153,7 @@ const MembershipSection = () => {
                     price={m.price}
                     hoverColor={m.hoverColor}
                     dimmed={isDimmed}
+                    benefits={m.benefits}
                   />
                 </motion.div>
               );
