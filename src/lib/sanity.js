@@ -7,8 +7,6 @@ export const client = createClient({
   dataset: import.meta.env.VITE_SANITY_DATASET,
   useCdn: true,
   apiVersion: '2025-07-15',
-  token: import.meta.env.VITE_SANITY_TOKEN,
-  withCredentials: true
 });
 
 // Initialize the image builder

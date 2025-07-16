@@ -6,6 +6,7 @@ import MembershipSection from '../components/MembershipSection';
 import Service from '../components/Service';
 import AppointmentSection from '../components/AppointmentSection';
 import DoctorsMeet from '../components/DoctorsMeet';
+import PetConnect from '../components/PetConnect';
 
 import React, { useEffect, useState } from 'react';
 import { client } from '../lib/sanity';
@@ -74,6 +75,8 @@ function Home() {
       <AppointmentSection/>
 
       <DoctorsMeet />
+
+      <PetConnect />
     </>
   );
 }
