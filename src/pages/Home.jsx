@@ -8,6 +8,7 @@ import AppointmentSection from '../components/AppointmentSection';
 import DoctorsMeet from '../components/DoctorsMeet';
 import PetConnect from '../components/PetConnect';
 import Testimonial from '../components/Testimonial';
+import PressAndMedia from '../components/PressAndMedia';
 
 import React, { useEffect, useState } from 'react';
 import { client } from '../lib/sanity';
@@ -80,6 +81,8 @@ function Home() {
       <PetConnect />
 
       <Testimonial />
+
+      <PressAndMedia />
     </>
   );
 }
