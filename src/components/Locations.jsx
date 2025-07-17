@@ -1,4 +1,4 @@
-import { FaMapMarkerAlt, FaClock} from "react-icons/fa";
+import { FaMapMarkerAlt, FaClock } from "react-icons/fa";
 
 const Locations = () => {
   const locations = [
@@ -89,11 +89,10 @@ const Locations = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-8">
         {locations.map((location, index) => (
           <div key={index} className="space-y-3">
-            
             <div className="space-y-2">
               {location.items.map((item, idx) => (
-                <div key={idx} className="flex">
-                  {location.icon}
+                <div key={idx} className="flex items-start">
+                  {item.icon}
                   {item.map ? (
                     <a
                       href={item.map}
@@ -101,10 +100,10 @@ const Locations = () => {
                       rel="noopener noreferrer"
                       className="text-gray-400 text-sm hover:text-white hover:underline"
                     >
-                     {item.text}
+                      {item.text}
                     </a>
                   ) : (
-                    <span className={`text-sm ${item.isTime ? "text-white" : "text-grey-400"}`}>
+                    <span className={`text-sm ${item.isTime ? "text-white" : "text-gray-400"}`}>
                       {item.text}
                     </span>
                   )}
@@ -114,7 +113,6 @@ const Locations = () => {
           </div>
         ))}
       </div>
-
       <hr className="max-w-7xl mx-auto border-gray-400 border-t" />
     </div>
   );
