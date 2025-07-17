@@ -117,7 +117,7 @@ const Testimonial = () => {
     return (
       <motion.div
         key={`${testimonial.id}-${index}`}
-        className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300 flex-shrink-0 absolute top-0"
+        className="bg-[#f7f3ea] rounded-2xl shadow-lg p-6 border border-[#821b1f] hover:shadow-xl transition-shadow duration-300 flex-shrink-0 absolute top-0"
         style={{
           width: `${cardWidth}px`,
           transform: `translateX(${xPos}px)`,
@@ -133,14 +133,14 @@ const Testimonial = () => {
             className="w-12 h-12 rounded-full object-cover mr-4"
           />
           <div>
-            <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+            <h4 className="font-semibold text-[#821b1f]">{testimonial.name}</h4>
             <p className="text-sm text-gray-600">{testimonial.role}</p>
-            <p className="text-xs text-blue-600 font-medium">{testimonial.company}</p>
+            <p className="text-xs text-[#b98a32] font-medium">{testimonial.company}</p>
           </div>
         </div>
 
         <div className="mb-4">
-          <div className="flex text-yellow-400 mb-2">
+          <div className="flex text-[#b98a32] mb-2">
             {[...Array(5)].map((_, i) => (
               <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
                 <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
@@ -155,10 +155,10 @@ const Testimonial = () => {
   };
 
   return (
-    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] overflow-hidden py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="w-screen relative left-1/2 right-1/2 -mx-[50vw] overflow-hidden py-16 bg-[#b98a32]">
       <div className="">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Happy Pets make <br/> Happy Families</h2>
+          <h2 className="text-4xl font-bold text-[#f7f3ea] mb-4">Happy Pets make <br/> Happy Families</h2>
         </div>
 
         <div 
@@ -179,8 +179,8 @@ const Testimonial = () => {
             onClick={() => setIsAutoPlaying(!isAutoPlaying)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
               isAutoPlaying
-                ? 'bg-blue-600 text-white hover:bg-blue-700'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-[#821b1f] text-[#f7f3ea] hover:bg-[#6a1519]'
+                : 'bg-[#f7f3ea] text-[#821b1f] hover:bg-[#e8e4db]'
             }`}
           >
             {isAutoPlaying ? 'Pause' : 'Play'} Auto-scroll
