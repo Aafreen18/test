@@ -243,7 +243,7 @@ const PetConnect = () => {
             </div>
             
             <div className="relative w-full max-w-xs mx-auto h-[500px]">
-              <div className="absolute inset-0 rounded-3xl p-2 shadow-xl" style={{ backgroundColor: '#821b1f' }}>
+              <div className="absolute inset-0 rounded-3xl p-2 shadow-xl" style={{ backgroundColor: '#b98a32' }}>
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 rounded-b-xl" style={{ backgroundColor: '#b98a32' }}></div>
                 <div className="h-full overflow-hidden rounded-2xl bg-[#f7f3ea]">
                   <AnimatePresence mode="wait">
@@ -297,7 +297,7 @@ const PetConnect = () => {
             
             <div className="md:w-1/2 flex justify-center items-center sticky top-0 h-screen">
               <div className="relative w-72 h-[500px]">
-                <div className="absolute inset-0 rounded-3xl p-2 shadow-xl" style={{ backgroundColor: '#b09a32' }}>
+                <div className="absolute inset-0 rounded-3xl p-2 shadow-xl" style={{ backgroundColor: '#b89a32' }}>
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 rounded-b-xl" style={{ backgroundColor: '#b98a32' }}></div>
                   <div className="h-full overflow-hidden rounded-2xl bg-[#f7f3ea]">
                     <AnimatePresence mode="wait">
