@@ -41,7 +41,7 @@ const PressAndMedia = () => {
 
   if (loading) {
     return (
-      <div className="full-width-breakout px-4 sm:px-6 lg:px-8 py-12 bg-[#f7f3ea] text-center">
+      <div className="full-width-breakout px-4 sm:px-6 lg:px-8 py-12 bg-[#821b1f] text-center">
         <p>Loading news articles...</p>
       </div>
     );
@@ -49,14 +49,14 @@ const PressAndMedia = () => {
 
   if (!articles.length) {
     return (
-      <div className="full-width-breakout px-4 sm:px-6 lg:px-8 py-12 bg-[#f7f3ea] text-center">
+      <div className="full-width-breakout px-4 sm:px-6 lg:px-8 py-12 bg-[#821b1f] text-center">
         <p>No articles found. Please try again later.</p>
       </div>
     );
   }
 
   return (
-    <div className="full-width-breakout px-4 sm:px-6 lg:px-8 py-12 bg-[#f7f3ea]">
+    <div className="full-width-breakout px-4 sm:px-6 lg:px-8 py-12 bg-[#821b1f]">
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
