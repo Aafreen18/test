@@ -1,58 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { client } from '../lib/sanity';
+import { testimonialQuery } from '../lib/queries'; // import the GROQ query
 
 const Testimonial = () => {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Michael Chen",
-      role: "CEO",
-      company: "StartupXYZ",
-      content: "Outstanding quality and attention to detail. They delivered exactly what we needed, on time and within budget.",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
-    },
-    {
-      id: 2,
-      name: "Emily Rodriguez",
-      role: "Product Manager",
-      company: "InnovateLabs",
-      content: "The innovative approach and creative solutions provided exceeded our expectations. Highly recommend their services.",
-      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
-    },
-    {
-      id: 3,
-      name: "David Thompson",
-      role: "CTO",
-      company: "DataFlow Inc",
-      content: "Exceptional technical expertise and customer service. They understood our complex requirements perfectly.",
-      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
-    },
-    {
-      id: 4,
-      name: "Lisa Wang",
-      role: "Designer",
-      company: "Creative Studio",
-      content: "Their creative vision and execution is unmatched. Every project is handled with care and professionalism.",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face"
-    },
-    {
-      id: 5,
-      name: "Robert Martinez",
-      role: "Operations Manager",
-      company: "Global Solutions",
-      content: "Reliable, efficient, and always delivers quality results. They've become an essential part of our operations.",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
-    }
-  ];
-
+  const [testimonials, setTestimonials] = useState([]);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
   const [cardWidth, setCardWidth] = useState(350);
   const [visibleCards, setVisibleCards] = useState(3);
   const [offset, setOffset] = useState(0);
-  const speed = 2.5; // pixels per frame
+  const speed = 2.5;
   const gap = 32;
+
+  useEffect(() => {
+    client.fetch(testimonialQuery).then((data) => {
+      setTestimonials(data);
+    });
+  }, []);
 
   useEffect(() => {
     const updateDimensions = () => {
